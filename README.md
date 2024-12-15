@@ -1,4 +1,4 @@
-# Netflix Clone Deployment on AWS using Jenkins
+# Deploy Netflix Clone on Cloud using Jenkins - DevSecOps Project 
 
 In this project, we will deploy a Netflix clone application as a Docker container on a Kubernetes cluster through a secure CI/CD pipeline using Jenkins, a popular CI/CD tool. Along with Jenkins, we will incorporate a comprehensive security pipeline using tools such as SonarQube, Trivy, and OWASP Dependency-Check. Additionally, we will integrate monitoring with Prometheus and Grafana and implement GitOps with ArgoCD for Kubernetes deployment.
 
