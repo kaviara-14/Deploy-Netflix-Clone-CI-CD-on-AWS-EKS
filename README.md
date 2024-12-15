@@ -1,11 +1,12 @@
-# Netflix Clone Deployment on AWS using Jenkins - DevSecOps Project
+# Netflix Clone Deployment on AWS using Jenkins
 
-This DevSecOps project demonstrates deploying a Netflix clone application as a Docker container on a Kubernetes cluster using a secure CI/CD pipeline managed by Jenkins, a leading CI/CD tool. The process incorporates several in-demand DevOps tools, including Docker for containerization, SonarQube for code quality analysis, Trivy for vulnerability scanning, Prometheus and Grafana for monitoring, and ArgoCD with Helm for Kubernetes deployment. The project highlights end-to-end DevSecOps practices, covering pipeline setup, security integration, deployment, monitoring, and notifications, offering a comprehensive hands-on experience with modern DevOps workflows.
+In this project, we will deploy a Netflix clone application as a Docker container on a Kubernetes cluster through a secure CI/CD pipeline using Jenkins, a popular CI/CD tool. Along with Jenkins, we will incorporate a comprehensive security pipeline using tools such as SonarQube, Trivy, and OWASP Dependency-Check. Additionally, we will integrate monitoring with Prometheus and Grafana and implement GitOps with ArgoCD for Kubernetes deployment.
 
-![Screenshot 2024-12-14 125517](https://github.com/user-attachments/assets/2814730c-b219-4438-8e11-c67c33be3a78)
+![Screenshot 2024-12-14 125517](https://github.com/user-attachments/assets/285817c7-5b47-4337-947e-cd9e828bf3a6)
 
 # Phase 1: Initial Setup and Deployment
 This phase focuses on setting up the foundational environment needed for deploying the application. It includes provisioning a cloud instance, installing necessary tools, and initializing the application to ensure a seamless deployment experience.
+
 ### Step 1: Launch EC2 (Ubuntu 22.04):
   * Provision an EC2 instance on AWS with Ubuntu 22.04.
   * Connect to the instance using SSH.
@@ -62,6 +63,7 @@ This phase focuses on setting up the foundational environment needed for deployi
 
 ### Integrate SonarQube:
   * Configure SonarQube to analyze code for quality and security issues
+
 # Phase 3: CI/CD Setup
 
 ### Install Jenkins:
@@ -91,9 +93,10 @@ This phase focuses on setting up the foundational environment needed for deployi
     * Add SonarQube credentials and DockerHub credentials.
     * Install and configure tools like Sonar Scanner and Dependency Check.
 
-  * Add the pipeline code and build now to see the output.
+  * Configure Jenkins CI/CD Pipeline code and click build now to see the output.
 
       ![Screenshot 2024-12-14 130505](https://github.com/user-attachments/assets/a24387a7-ab2f-4ca7-932b-85f81a95f1af)
+
 # Phase 4: Monitoring
 
 ### Install Prometheus and Grafana:
