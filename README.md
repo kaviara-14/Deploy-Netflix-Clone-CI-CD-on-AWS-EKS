@@ -17,7 +17,7 @@ This phase focuses on setting up the foundational environment needed for deployi
 
           sudo apt-get update
           sudo apt-get upgrade -y
-          git clone https://github.com/N4si/DevSecOps-Project.git
+          git clone https://github.com/kaviara-14/DevSecOps-Netflix-Clone-with-Jenkins-CI-CD.git
 
 ### Step 3: Install Docker and Run the App Using a Container:
 
