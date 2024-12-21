@@ -2,6 +2,7 @@
 
 In this project, we will deploy a Netflix clone application as a Docker container on a AWS Kubernetes cluster through a secure CI/CD pipeline using Jenkins, a popular CI/CD tool. Along with Jenkins, we will incorporate a comprehensive security pipeline using tools such as SonarQube, Trivy, and OWASP Dependency-Check. Additionally, we will integrate monitoring with Prometheus and Grafana and implement GitOps with ArgoCD for Kubernetes deployment.
 
+![image](https://github.com/user-attachments/assets/48e36831-9532-40b7-afd2-083432c570a1)
 ![Screenshot 2024-12-14 125517](https://github.com/user-attachments/assets/285817c7-5b47-4337-947e-cd9e828bf3a6)
 
 # Phase 1: Initial Setup and Deployment
