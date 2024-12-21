@@ -120,9 +120,6 @@ sudo mkdir -p /etc/prometheus /data
 sudo mv prometheus.yml /etc/prometheus/
 sudo chown -R prometheus:prometheus /etc/prometheus/ /data
 
-# Create a systemd unit configuration file for Prometheus
-sudo nano /etc/systemd/system/prometheus.service
-
 # Enable and start Prometheus
 sudo systemctl enable prometheus
 sudo systemctl start prometheus
@@ -139,9 +136,6 @@ wget https://github.com/prometheus/node_exporter/releases/download/v1.6.1/node_e
 tar -xvf node_exporter-1.6.1.linux-amd64.tar.gz
 sudo mv node_exporter /usr/local/bin/
 
-# Create a systemd unit configuration file for Node Exporter
-sudo nano /etc/systemd/system/node_exporter.service
-
 # Enable and start Node Exporter
 sudo systemctl enable node_exporter
 sudo systemctl start node_exporter
@@ -150,21 +144,16 @@ sudo systemctl start node_exporter
 ### Step 3 : Configure Prometheus Plugin Integration:
 Integrate Jenkins with Prometheus to monitor the CI/CD pipeline.To configure Prometheus to scrape metrics from Node Exporter and Jenkins, you need to modify the prometheus.yml file. Here is an example prometheus.yml configuration for your setup:
 ```bash
-global:
-  scrape_interval: 15s
+global: scrape_interval: 15s
 
 scrape_configs:
   - job_name: 'node_exporter'
     static_configs:
       - targets: ['localhost:9100']
-
   - job_name: 'jenkins'
     metrics_path: '/prometheus'
     static_configs:
       - targets: ['<your-jenkins-ip>:<your-jenkins-port>']
-
-# Check the validity of the configuration file
-promtool check config /etc/prometheus/prometheus.yml
 
 # You can access Prometheus targets at, http://<your-prometheus-ip>:9090/targets
 ```
@@ -175,15 +164,11 @@ Grafana complements Prometheus by providing a visualization platform to create i
 ```bash
 # Add the GPG key for Grafana 
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
-
-# Add Grafana Repository
 echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
 
-Update and Install Grafana
+# Install and Start Grafana
 sudo apt-get update
 sudo apt-get install grafana -y
-
-# Enable and Start Grafana Service
 sudo systemctl start grafana-server
 sudo systemctl enable grafana-server
 
