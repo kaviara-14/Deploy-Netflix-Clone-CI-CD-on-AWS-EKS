@@ -96,7 +96,7 @@ Goto Manage Jenkins →Plugins → Available Plugins, Install Necessary Jenkins 
  * Add DockerHub Username and Password under Global Credentials.
  * **GitHub Token:** Generate a personal access token in GitHub and add it to Jenkins.
 
-## Step 3 : Configure CI/CD Pipeline in Jenkins
+### Step 3 : Configure CI/CD Pipeline in Jenkins
 
 In this github repo we have a Jenkinsfile, In that file you will see the pipeline code.Build the pipeline in Jenkins to see the result and Check the repository to ensure the YAML file has been updated with the new Docker image tag
 
