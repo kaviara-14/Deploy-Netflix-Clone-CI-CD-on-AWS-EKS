@@ -272,6 +272,8 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2
 # By default, argocd-server is not publically exposed. In this scenario, we will use a Load Balancer to make it usable, get the url
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 
+# We get the load balancer hostname using the command below
+kubectl get svc argocd-server -n argocd
 ```
 ### Step 3 : Configure Argocd
 * Take the LoadBalancer link and open it in your browser.After installing ArgoCD, you need to set up your GitHub repository as a source for your application deployment. This typically involves configuring the connection to your repository and defining the source for your ArgoCD application.
