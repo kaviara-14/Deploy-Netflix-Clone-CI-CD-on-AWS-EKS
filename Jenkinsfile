@@ -71,16 +71,23 @@ pipeline{
                 sh 'docker run -d -p 8081:80 kaviara14/netflix:latest'
             }
         }
-        stage('Deploy to kubernets'){
-            steps{
-                script{
-                    dir('Kubernetes') {
-                        withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                                sh 'kubectl apply -f deployment.yml'
-                                sh 'kubectl apply -f service.yml'
-                        }   
-                    }
-                }
+        
+        stage('Update Deployment File') {
+            environment {
+                GIT_REPO_NAME = "Deploy-Netflix-Clone-CI-CD-on-AWS-EKS"
+                GIT_USER_NAME = "kaviara-14"
+            }
+            steps {
+                withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                    sh '''
+                        git config user.email "kaviarasuvpl14@gmail.com"
+                        git config user.name "kaviara-14"
+                        BUILD_NUMBER=${BUILD_NUMBER}
+                        sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" kubernetes/deployment.yml
+                        git add kubernetes/deployment.yml
+                        git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                    '''
             }
         }
     }
