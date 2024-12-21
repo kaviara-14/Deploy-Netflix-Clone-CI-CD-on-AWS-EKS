@@ -269,7 +269,7 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
 kubectl create namespace argocd 
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.4.7/manifests/install.yaml
 
-# Retrieve the LoadBalancer URL
+# By default, argocd-server is not publically exposed. In this scenario, we will use a Load Balancer to make it usable, get the url
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 
 ```
