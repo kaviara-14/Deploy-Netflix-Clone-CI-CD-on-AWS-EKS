@@ -99,6 +99,8 @@ Goto Manage Jenkins →Plugins → Available Plugins, Install Necessary Jenkins 
 
 In this github repo we have a Jenkinsfile, In that file you will see the pipeline code.Build the pipeline in Jenkins to see the result.
 
+![Screenshot 2024-12-14 130501](https://github.com/user-attachments/assets/c0836133-0198-4d48-9871-766aeaaf441b)
+
 ---
 
 # Phase 4 : Prometheus Setup and Node Exporter 
@@ -185,15 +187,17 @@ sudo systemctl start grafana-server
 sudo systemctl enable grafana-server
 
 # Access Grafana at http://<server-ip>:3000 add Prometheus Data Source and import the dashboard to see the output.
-
 ```
+![Screenshot 2024-12-14 130649](https://github.com/user-attachments/assets/1e37eeea-03c4-4407-bd3e-64bd853fc681)
 
 --- 
+
 # Phase 5: Notification
 
   * Configure email notification systems in Jenkins.
     
 --- 
+
 # Phase 6: Kubernetes
 ### Step 1 : Install AWS CLI, Kubectl, eksctl and helm chart
 
@@ -269,6 +273,8 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2
 * Take the LoadBalancer link and open it in your browser.After installing ArgoCD, you need to set up your GitHub repository as a source for your application deployment. This typically involves configuring the connection to your repository and defining the source for your ArgoCD application.
 * Once you configured you have now successfully deployed an application using Argo CD.Argo CD is a Kubernetes controller, responsible for continuously monitoring all running applications and comparing their live state to the desired state specified in the Git repository.
 
+![image](https://github.com/user-attachments/assets/c747fe86-ae4c-46be-9b06-e7b609c80a48)
+
 ### Step 4 : Install Node Exporter using Helm
 To begin monitoring your Kubernetes cluster, you'll install the Prometheus Node Exporter. This component allows you to collect system-level metrics from your cluster nodes. Here are the steps to install the Node Exporter using Helm:
 
@@ -282,5 +288,11 @@ kubectl create namespace prometheus-node-exporter
 # Install the Node Exporter using Helm
 helm install prometheus-node-exporter prometheus-community/prometheus-node-export
 ```
+---
 
+# Final Output
 Open inbound traffic on port 30007 and 9100 for EKS cluster node IP.To Access the app make sure port 30007 is open in your security group and then open a new tab paste your NodeIP:30007, your app should be running.
+
+![image](https://github.com/user-attachments/assets/72d4558f-983d-488d-b159-b17a90827248)
+
+---
