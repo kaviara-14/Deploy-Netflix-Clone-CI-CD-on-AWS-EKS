@@ -65,7 +65,7 @@ trivy image <imageid>
 ---
 
 # Phase 3: CI/CD Setup
-Our Jenkins pipeline is a powerhouse, integrating SonarQube for code quality, Trivy for container security, and OWASP for web app safety. It pulls code from GitHub, ensuring automated, high-quality, and secure software development.
+Our Jenkins pipeline is a powerhouse, integrating SonarQube for code quality, Trivy for container security, and OWASP for web app safety. It pulls code from GitHub, ensuring automated, high-quality, and secure software development and finally update the docker image in github.
 
 ### Step 1 : Install Jenkins
 ```bash
@@ -94,10 +94,11 @@ Goto Manage Jenkins →Plugins → Available Plugins, Install Necessary Jenkins 
  * **Configure Java and Nodejs in Global Tool Configuration :** Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on Apply and Save.
  * **Configure Sonar Server in Manage Jenkins :** Goto your Sonarqube Server, < Your Public IP >:9000, generate a token. In Jenkins, Goto Jenkins Dashboard → Manage Jenkins → Credentials → Add Secret Text. (Put copied token).
  * Add DockerHub Username and Password under Global Credentials.
+ * **GitHub Token:** Generate a personal access token in GitHub and add it to Jenkins.
 
 ## Step 3 : Configure CI/CD Pipeline in Jenkins
 
-In this github repo we have a Jenkinsfile, In that file you will see the pipeline code.Build the pipeline in Jenkins to see the result.
+In this github repo we have a Jenkinsfile, In that file you will see the pipeline code.Build the pipeline in Jenkins to see the result and Check the repository to ensure the YAML file has been updated with the new Docker image tag
 
 ![Screenshot 2024-12-14 130501](https://github.com/user-attachments/assets/c0836133-0198-4d48-9871-766aeaaf441b)
 
