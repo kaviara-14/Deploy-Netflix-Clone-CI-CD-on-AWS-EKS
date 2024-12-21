@@ -16,7 +16,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/kaviara-14/DevSecOps-Pipeline-Project-Deploy-Netflix-Clone-on-Kubernetes.git'
+                git branch: 'main', url: 'https://github.com/kaviara-14/Deploy-Netflix-Clone-CI-CD-on-AWS-EKS.git'
             }
         }
         stage("Sonarqube Analysis "){
@@ -69,6 +69,18 @@ pipeline{
         stage('Deploy to container'){
             steps{
                 sh 'docker run -d -p 8081:80 kaviara14/netflix:latest'
+            }
+        }
+        stage('Deploy to kubernets'){
+            steps{
+                script{
+                    dir('Kubernetes') {
+                        withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                                sh 'kubectl apply -f deployment.yml'
+                                sh 'kubectl apply -f service.yml'
+                        }   
+                    }
+                }
             }
         }
     }
