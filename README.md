@@ -106,7 +106,9 @@ In this github repo we have a Jenkinsfile, In that file you will see the pipelin
 
 # Phase 4 : Prometheus Setup and Node Exporter 
 ### Step 1 : Install Prometheus
-Set up Prometheus and Grafana to monitor your application. Prometheus is a monitoring and alerting tool that collects metrics and helps track the health of systems and applications.Launch a new instance (Ubuntu). Instance type as t2.medium. You can create a new key pair or use an existing one. Enable HTTP and HTTPS settings in the Security Group. EBS Volumes as 20GB.
+Prometheus will monitor your application, collecting system and application metrics.Launch a new EC2 instance (Ubuntu), selecting the t2.medium instance type, and configure the security group to allow HTTP and HTTPS traffic. Allocate 20GB of storage for the instance.
+
+Install Prometheus by running the following commands
 
 ```bash
 # Installing Prometheus
@@ -129,7 +131,8 @@ sudo systemctl start prometheus
 ```
 
 ### Step 2 : Install Node Exporter
-Next, we're going to set up and configure Node Exporter to collect Linux system metrics like CPU load and disk I/O. Node Exporter will expose these as Prometheus-style metrics.
+Node Exporter collects system-level metrics like CPU usage, memory, and disk I/O, and exposes them in a format that Prometheus can scrape.
+
 ```bash
 # Create a system user for Node Exporter and download Node Exporter
 wget https://github.com/prometheus/node_exporter/releases/download/v1.6.1/node_exporter-1.6.1.linux-amd64.tar.gz
@@ -142,7 +145,8 @@ sudo systemctl start node_exporter
 ```
 
 ### Step 3 : Configure Prometheus Plugin Integration:
-Integrate Jenkins with Prometheus to monitor the CI/CD pipeline.To configure Prometheus to scrape metrics from Node Exporter and Jenkins, you need to modify the prometheus.yml file. Here is an example prometheus.yml configuration for your setup:
+To monitor both Node Exporter and Jenkins metrics, you need to modify the prometheus.yml configuration file.
+
 ```bash
 global: scrape_interval: 15s
 
@@ -150,6 +154,7 @@ scrape_configs:
   - job_name: 'node_exporter'
     static_configs:
       - targets: ['localhost:9100']
+
   - job_name: 'jenkins'
     metrics_path: '/prometheus'
     static_configs:
@@ -160,7 +165,9 @@ scrape_configs:
 ---
 
 # Phase 5 - Grafana Dashboard
-Grafana complements Prometheus by providing a visualization platform to create interactive dashboards and analyze collected metrics, making it easier to monitor and troubleshoot systems.
+### Step 1 : Install Grafana
+Grafana allows you to visualize the metrics collected by Prometheus, providing insights into your system's performance and health.
+
 ```bash
 # Add the GPG key for Grafana 
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
@@ -174,6 +181,10 @@ sudo systemctl enable grafana-server
 
 # Access Grafana at http://<server-ip>:3000 add Prometheus Data Source and import the dashboard to see the output.
 ```
+### Step 2 : Integrate Prometheus with Grafana:
+- Once logged into Grafana, add Prometheus as a data source by navigating to Configuration → Data Sources → Add Data Source and selecting Prometheus.
+- Then, import the desired Prometheus dashboard or create custom dashboards to visualize system and application metrics.
+  
 ![Screenshot 2024-12-14 130649](https://github.com/user-attachments/assets/1e37eeea-03c4-4407-bd3e-64bd853fc681)
 
 --- 
