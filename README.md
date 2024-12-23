@@ -282,7 +282,7 @@ echo $ARGO_PWD
 ![image](https://github.com/user-attachments/assets/c747fe86-ae4c-46be-9b06-e7b609c80a48)
 
 ### Step 4 : Install Node Exporter using Helm
-To begin monitoring your Kubernetes cluster, you'll install the Prometheus Node Exporter. This component allows you to collect system-level metrics from your cluster nodes. Here are the steps to install the Node Exporter using Helm:
+To monitor your Kubernetes cluster and collect system-level metrics from the nodes, you can install Prometheus Node Exporter using Helm. Follow these steps:
 
 ```bash
 # Add the Prometheus Community Helm repository
@@ -294,6 +294,9 @@ kubectl create namespace prometheus-node-exporter
 # Install the Node Exporter using Helm
 helm install prometheus-node-exporter prometheus-community/prometheus-node-export
 ```
+
+Once installed, the Node Exporter will start running as a DaemonSet, collecting system-level metrics from all the nodes in your Kubernetes cluster. These metrics can be scraped by Prometheus for monitoring and visualization.
+
 ---
 
 # Final Output
