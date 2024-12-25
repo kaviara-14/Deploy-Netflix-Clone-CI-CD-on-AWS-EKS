@@ -26,7 +26,7 @@ sudo usermod -aG docker $USER
 newgrp docker
 sudo chmod 777 /var/run/docker.sock
 
-# Pushing docker image for mult Platform Architecure
+# This Command used to build and push a multi-platform container image
 docker buildx build --platform linux/arm64,linux/amd64 --push -t netflix .
 # Build and run the application
 docker run -d --name netflix -p 8081:80 netflix:latest
